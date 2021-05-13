@@ -9,13 +9,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ChatApplication.Data.Users
+namespace ChatApplication.Data.Repository.Users
 {
-    public class UserOperations : IUserOperations
+    public class UserRepository : IUserRepository
     {
         private readonly string _connectionString;
         private IDbConnection Connection => new SqlConnection(_connectionString);
-        public UserOperations(IOptions<ConnectionString> connectionStrings)
+        public UserRepository(IOptions<ConnectionString> connectionStrings)
         {
             _connectionString = connectionStrings.Value.defaultConnection;
         }
@@ -28,8 +28,6 @@ namespace ChatApplication.Data.Users
                 parameters.Add("@Username", user.Username, DbType.String);
                 parameters.Add("@Email", user.Email, DbType.String);
                 parameters.Add("@PasswordHash", user.PasswordHash, DbType.String);
-                parameters.Add("@FileName", user.FileName, DbType.String);
-                parameters.Add("@ProfilePicture", user.ProfilePicture, DbType.Binary);
                 parameters.Add("@Biography", user.Biography, DbType.String);
                 parameters.Add("@Birthday", user.Birthday, DbType.Date);
                 parameters.Add("@LastActivityDate", user.LastActivityDate, DbType.DateTime);
@@ -79,8 +77,6 @@ namespace ChatApplication.Data.Users
                 parameters.Add("@Username", user.Username, DbType.String);
                 parameters.Add("@Email", user.Email, DbType.String);
                 parameters.Add("@PasswordHash", user.PasswordHash, DbType.String);
-                parameters.Add("@FileName", user.FileName, DbType.String);
-                parameters.Add("@ProfilePicture", user.ProfilePicture, DbType.Binary);
                 parameters.Add("@Biography", user.Biography, DbType.String);
                 parameters.Add("@Birthday", user.Birthday, DbType.Date);
                 parameters.Add("@LastActivityDate", user.LastActivityDate, DbType.DateTime);

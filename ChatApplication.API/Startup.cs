@@ -1,5 +1,5 @@
 using ChatApplication.Data;
-using ChatApplication.Data.Users;
+using ChatApplication.Data.Repository.Users;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -25,7 +25,7 @@ namespace ChatApplication.API
             services.AddControllers();
             services.AddOptions();
             services.Configure<ConnectionString>(Configuration.GetSection("ConnectionStrings"));
-            services.AddTransient<IUserOperations, UserOperations>();
+            services.AddTransient<IUserRepository, UserRepository>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ChatApplication.API", Version = "v1" });

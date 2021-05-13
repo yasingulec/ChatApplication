@@ -12,8 +12,6 @@ namespace ChatApplication.Entities
         public string Username { get; set; }
         public string Email { get; set; }
         public string PasswordHash { get; set; }
-        public string FileName { get; set; }
-        public byte[] ProfilePicture { get; set; }
         public string Biography { get; set; }
         public DateTime Birthday { get; set; }
         public DateTime CreatedDate { get; set; }

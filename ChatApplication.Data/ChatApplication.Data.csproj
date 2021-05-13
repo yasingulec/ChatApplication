@@ -15,4 +15,8 @@
     <ProjectReference Include="..\ChatApplication.Entities\ChatApplication.Entities.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="UnitOfWork\" />
+  </ItemGroup>
+
 </Project>

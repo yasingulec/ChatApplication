@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ChatApplication.Data.Users
+namespace ChatApplication.Data.Repository.Users
 {
-    public interface IUserOperations
+   public interface IUserRepository
     {
         List<User> GetUsers();
         User GetUser(Guid id);

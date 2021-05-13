@@ -1,11 +1,10 @@
-﻿using ChatApplication.Data.Users;
+﻿using ChatApplication.Data.Repository.Users;
 using ChatApplication.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace ChatApplication.API.Controllers
 {
@@ -13,7 +12,8 @@ namespace ChatApplication.API.Controllers
     [Route("[controller]/[action]")]
     public class WeatherForecastController : ControllerBase
     {
-        private IUserOperations _userOperations;
+        
+        private IUserRepository _userRepository;
         private static readonly string[] Summaries = new[]
         {
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
@@ -21,10 +21,10 @@ namespace ChatApplication.API.Controllers
 
         private readonly ILogger<WeatherForecastController> _logger;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger, IUserOperations userOperations)
+        public WeatherForecastController(ILogger<WeatherForecastController> logger, IUserRepository userRepository)
         {
             _logger = logger;
-            _userOperations = userOperations;
+            _userRepository = userRepository;
         }
 
         [HttpGet]
@@ -42,32 +42,32 @@ namespace ChatApplication.API.Controllers
         [HttpGet]
         public IActionResult GetUsers()
         {
-            var users = _userOperations.GetUsers();
+            var users = _userRepository.GetUsers();
             return Ok(users);
         }
         [HttpGet]
         public IActionResult GetUser(Guid guid)
         {
-            var user = _userOperations.GetUser(guid);
+            var user = _userRepository.GetUser(guid);
             return Ok(user);
         }
         [HttpPost]
         public IActionResult AddUser(User user)
         {
-            _userOperations.AddUser(user);
+            _userRepository.AddUser(user);
             return Ok();
         }
 
         [HttpPost]
         public IActionResult DeleteUser(Guid guid)
         {
-            _userOperations.DeleteUser(guid);
+            _userRepository.DeleteUser(guid);
             return Ok();
         }
         [HttpPost]
         public IActionResult UpdateUser(User user)
         {
-            _userOperations.UpdateUser(user);
+            _userRepository.UpdateUser(user);
             return Ok();
         }
     }
