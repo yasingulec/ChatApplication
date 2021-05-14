@@ -30,7 +30,6 @@ namespace ChatApplication.Data.Repository.Users
                 parameters.Add("@PasswordHash", user.PasswordHash, DbType.String);
                 parameters.Add("@Biography", user.Biography, DbType.String);
                 parameters.Add("@Birthday", user.Birthday, DbType.Date);
-                parameters.Add("@LastActivityDate", user.LastActivityDate, DbType.DateTime);
                 var affectedRows = connection.Execute(sp, parameters, commandType: CommandType.StoredProcedure);
             }
         }
