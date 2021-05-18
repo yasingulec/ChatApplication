@@ -3,15 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31205.134
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatApplication.Core", "ChatApplication.Core\ChatApplication.Core.csproj", "{B7F30E78-452F-4BD0-BB8A-F744F06959E2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChatApplication.API", "ChatApplication.API\ChatApplication.API.csproj", "{8291C701-B026-49BC-8DC9-50E2BD73022C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatApplication.API", "ChatApplication.API\ChatApplication.API.csproj", "{8291C701-B026-49BC-8DC9-50E2BD73022C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChatApplication.Manager", "ChatApplication.Manager\ChatApplication.Manager.csproj", "{5D8B81EF-7534-4F52-A1EA-BF6924FC4878}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatApplication.Manager", "ChatApplication.Manager\ChatApplication.Manager.csproj", "{5D8B81EF-7534-4F52-A1EA-BF6924FC4878}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChatApplication.Data", "ChatApplication.Data\ChatApplication.Data.csproj", "{80EFDDFB-D515-4188-83CD-E7CF0EB847E2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatApplication.Data", "ChatApplication.Data\ChatApplication.Data.csproj", "{80EFDDFB-D515-4188-83CD-E7CF0EB847E2}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatApplication.Entities", "ChatApplication.Entities\ChatApplication.Entities.csproj", "{7A47A985-1078-4621-9A3A-E61CFF8ED120}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChatApplication.Entities", "ChatApplication.Entities\ChatApplication.Entities.csproj", "{7A47A985-1078-4621-9A3A-E61CFF8ED120}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,10 +17,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B7F30E78-452F-4BD0-BB8A-F744F06959E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B7F30E78-452F-4BD0-BB8A-F744F06959E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B7F30E78-452F-4BD0-BB8A-F744F06959E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B7F30E78-452F-4BD0-BB8A-F744F06959E2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8291C701-B026-49BC-8DC9-50E2BD73022C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8291C701-B026-49BC-8DC9-50E2BD73022C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8291C701-B026-49BC-8DC9-50E2BD73022C}.Release|Any CPU.ActiveCfg = Release|Any CPU

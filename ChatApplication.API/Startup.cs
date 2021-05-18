@@ -1,13 +1,15 @@
+using ChatApplication.API.FluentValidation;
 using ChatApplication.Data;
 using ChatApplication.Data.Commands.UserCommands;
 using ChatApplication.Data.Queries.UserQueries;
-using ChatApplication.Data.Repository.Users;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using System.Globalization;
 
 namespace ChatApplication.API
 {
@@ -24,10 +26,13 @@ namespace ChatApplication.API
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddControllers();
+            services.AddControllers().AddFluentValidation(options=>
+            {
+                options.ValidatorOptions.LanguageManager.Culture = new CultureInfo("tr");
+                options.RegisterValidatorsFromAssemblyContaining<UserValidator>();
+            });
             services.AddOptions();
             services.Configure<ConnectionString>(Configuration.GetSection("ConnectionStrings"));
-            services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<IUserQueries, UserQueries>();
             services.AddTransient<IUserCommands, UserCommands>();
             services.AddSwaggerGen(c =>
