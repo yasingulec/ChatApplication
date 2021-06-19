@@ -12,9 +12,9 @@ namespace ChatApplication.API.FluentValidation
         public UserValidator()
         {
             RuleFor(x => x.Username).Length(3, 20).Matches("^[a-zA-Z0-9_][a-zA-Z0-9_.]*").NotEmpty();
-            RuleFor(x => x.Email).Length(50).EmailAddress().NotEmpty();
+            RuleFor(x => x.Email).Length(5,50).EmailAddress().NotEmpty();
             RuleFor(x => x.PasswordHash).Length(8,20).Matches("^[a-zA-Z0-9_][a-zA-Z0-9_.]*").NotEmpty();
-            RuleFor(x => x.Biography).Length(1000);
+            RuleFor(x => x.Biography).Length(0,1000);
         }
     }
 }

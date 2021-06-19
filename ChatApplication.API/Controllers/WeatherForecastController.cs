@@ -1,4 +1,5 @@
-﻿using ChatApplication.Data.Commands.UserCommands;
+﻿using ChatApplication.API.Models;
+using ChatApplication.Data.Commands.UserCommands;
 using ChatApplication.Data.Queries.UserQueries;
 using ChatApplication.Entities;
 using Microsoft.AspNetCore.Mvc;
@@ -60,6 +61,13 @@ namespace ChatApplication.API.Controllers
         {
             await _userCommands.AddUserAsync(user);
             return Ok();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Authenticate(UserAuthenticationModel model)
+        {
+            var user = await _userQueries.GetUserAsync(model.Username, model.Password);
+            return Ok(user);
         }
 
         [HttpPost]

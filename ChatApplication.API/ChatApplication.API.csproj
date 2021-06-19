@@ -5,17 +5,23 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="AutoMapper\**" />
+    <Compile Remove="Models\Common\**" />
+    <Content Remove="AutoMapper\**" />
+    <Content Remove="Models\Common\**" />
+    <EmbeddedResource Remove="AutoMapper\**" />
+    <EmbeddedResource Remove="Models\Common\**" />
+    <None Remove="AutoMapper\**" />
+    <None Remove="Models\Common\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="FluentValidation.AspNetCore" Version="10.1.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\ChatApplication.Data\ChatApplication.Data.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Models\Common\" />
-    <Folder Include="AutoMapper\" />
   </ItemGroup>
 
 </Project>

@@ -40,5 +40,18 @@ namespace ChatApplication.Data.Queries.UserQueries
                 return users.AsList();
             }
         }
+
+        public async Task<User> GetUserAsync(string username, string password)
+        {
+            string sp = "AUTHENTICATE_USER";
+            using (var con = Connection)
+            {
+                DynamicParameters parameters = new DynamicParameters();
+                parameters.Add("@Username", username, dbType: DbType.String);
+                parameters.Add("@Password", password, dbType: DbType.String);
+                var user = await con.QueryFirstOrDefaultAsync<User>(sp,param:parameters, commandType: CommandType.StoredProcedure);
+                return user;
+            }
+        }
     }
 }
