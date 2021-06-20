@@ -2,14 +2,18 @@ using ChatApplication.API.FluentValidation;
 using ChatApplication.Data;
 using ChatApplication.Data.Commands.UserCommands;
 using ChatApplication.Data.Queries.UserQueries;
+using ChatApplication.Manager.Queries.UserManagerQueries;
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Globalization;
+using System.Text;
 
 namespace ChatApplication.API
 {
@@ -33,8 +37,23 @@ namespace ChatApplication.API
             });
             services.AddOptions();
             services.Configure<ConnectionString>(Configuration.GetSection("ConnectionStrings"));
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuer = Configuration["Jwt:Issuer"],
+                    ValidAudience = Configuration["Jwt:Audience"],
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
+                };
+            });
             services.AddTransient<IUserQueries, UserQueries>();
             services.AddTransient<IUserCommands, UserCommands>();
+            services.AddTransient<IUserManagerQueries, UserManagerQueries>();
+            services.AddAutoMapper(typeof(Startup));
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ChatApplication.API", Version = "v1" });
@@ -53,6 +72,7 @@ namespace ChatApplication.API
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

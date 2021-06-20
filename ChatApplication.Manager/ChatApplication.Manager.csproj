@@ -6,11 +6,13 @@
 
   <ItemGroup>
     <Compile Remove="Commands\**" />
-    <Compile Remove="Queries\**" />
     <EmbeddedResource Remove="Commands\**" />
-    <EmbeddedResource Remove="Queries\**" />
     <None Remove="Commands\**" />
-    <None Remove="Queries\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ChatApplication.Data\ChatApplication.Data.csproj" />
+    <ProjectReference Include="..\ChatApplication.Entities\ChatApplication.Entities.csproj" />
   </ItemGroup>
 
 </Project>
