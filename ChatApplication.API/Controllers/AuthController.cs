@@ -45,7 +45,7 @@ namespace ChatApplication.API.Controllers
                     new Claim(JwtRegisteredClaimNames.Sub, _configuration["Jwt:Subject"]),
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                     new Claim(JwtRegisteredClaimNames.Iat, DateTime.UtcNow.ToString()),
-                    new Claim("Id", user.Id.ToString()),
+                    new Claim("UserId", user.UserId.ToString()),
                     new Claim("Username", user.Username),
                     new Claim("Email", user.Email),
             };

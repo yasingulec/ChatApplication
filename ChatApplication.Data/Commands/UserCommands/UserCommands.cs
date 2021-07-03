@@ -57,7 +57,7 @@ namespace ChatApplication.Data.Commands.UserCommands
                 parameters.Add("@Biography", user.Biography, DbType.String);
                 parameters.Add("@Birthday", user.Birthday, DbType.Date);
                 parameters.Add("@LastActivityDate", user.LastActivityDate, DbType.DateTime);
-                parameters.Add("@Id", user.Id, dbType: DbType.Guid);
+                parameters.Add("@Id", user.UserId, dbType: DbType.Guid);
 
                 var affectedRows = await con.ExecuteAsync(sp, parameters, commandType: CommandType.StoredProcedure);
             }

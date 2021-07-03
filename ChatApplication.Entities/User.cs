@@ -8,7 +8,11 @@ namespace ChatApplication.Entities
 {
     public class User
     {
-        public Guid Id { get; set; }
+        public User()
+        {
+            Roles = new List<Role>();
+        }
+        public Guid UserId { get; set; }
         public string Username { get; set; }
         public string Email { get; set; }
         public string PasswordHash { get; set; }
@@ -16,6 +20,7 @@ namespace ChatApplication.Entities
         public DateTime Birthday { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime LastActivityDate { get; set; }
+        public List<Role> Roles { get; set; }
 
     }
 }
