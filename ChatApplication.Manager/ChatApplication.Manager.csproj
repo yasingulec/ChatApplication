@@ -11,6 +11,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="5.0.0" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.11.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\ChatApplication.Data\ChatApplication.Data.csproj" />
     <ProjectReference Include="..\ChatApplication.Entities\ChatApplication.Entities.csproj" />
   </ItemGroup>

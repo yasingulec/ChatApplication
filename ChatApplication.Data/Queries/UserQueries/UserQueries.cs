@@ -50,8 +50,12 @@ namespace ChatApplication.Data.Queries.UserQueries
                 parameters.Add("@Username", username, dbType: DbType.String);
                 parameters.Add("@Password", password, dbType: DbType.String);
                 var user = await con.QueryFirstOrDefaultAsync<User>(sp,param:parameters, commandType: CommandType.StoredProcedure);
-                var roles =await GetUserRolesAsync(user.UserId);
-                user.Roles = roles;
+                if (user != null)
+                {
+                    var roles = await GetUserRolesAsync(user.UserId);
+                    user.Roles = roles;
+                }
+                       
                 return user;
             }
         }

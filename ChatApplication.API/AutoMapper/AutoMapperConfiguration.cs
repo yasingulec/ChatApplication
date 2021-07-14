@@ -13,6 +13,7 @@ namespace ChatApplication.API.AutoMapper
         public AutoMapperConfiguration()
         {
             CreateMap<User, UserAuthenticationResponseModel>();
+            CreateMap<Role, RoleResponseModel>();
         }
     }
 }

@@ -5,7 +5,6 @@ using ChatApplication.Manager.Queries.UserManagerQueries;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
@@ -22,12 +21,10 @@ namespace ChatApplication.API.Controllers
     public class AuthController : ControllerBase
     {
         private readonly IUserManagerQueries _userManagerQueries;
-        private readonly IConfiguration _configuration;
         private readonly IMapper _mapper;
-        public AuthController(IUserManagerQueries userManagerQueries, IConfiguration configuration, IMapper mapper)
+        public AuthController(IUserManagerQueries userManagerQueries, IMapper mapper)
         {
             _userManagerQueries = userManagerQueries;
-            _configuration = configuration;
             _mapper = mapper;
         }
         [AllowAnonymous]
@@ -36,25 +33,14 @@ namespace ChatApplication.API.Controllers
         {
 
             var user = await _userManagerQueries.GetUserAsync(model.Username, model.Password);
-            var mappedUser = _mapper.Map<UserAuthenticationResponseModel>(user);
+
             if (user == null)
                 return BadRequest();
 
-            var claims = new List<Claim>
-            {
-                    new Claim(JwtRegisteredClaimNames.Sub, _configuration["Jwt:Subject"]),
-                    new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                    new Claim(JwtRegisteredClaimNames.Iat, DateTime.UtcNow.ToString()),
-                    new Claim("UserId", user.UserId.ToString()),
-                    new Claim("Username", user.Username),
-                    new Claim("Email", user.Email),
-            };
+            _mapper.Map<List<RoleResponseModel>>(user.Roles);
+            var mappedUser = _mapper.Map<UserAuthenticationResponseModel>(user);
 
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
-            var signIn = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-            var token = new JwtSecurityToken(_configuration["Jwt:Issuer"], _configuration["Jwt:Audience"], claims, expires: DateTime.UtcNow.AddDays(7), signingCredentials: signIn);
-            string loginToken = new JwtSecurityTokenHandler().WriteToken(token);
-            mappedUser.Token = loginToken;
+            mappedUser.Token = _userManagerQueries.GetToken(user);
             Response<UserAuthenticationResponseModel> response = new Response<UserAuthenticationResponseModel>
             {
                 Data = mappedUser,

@@ -13,7 +13,7 @@ namespace ChatApplication.API.Models
         public string Email { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime LastActivityDate { get; set; }
-        public List<Role> Roles { get; set; }
+        public List<RoleResponseModel> Roles { get; set; }
         public string Token { get; set; }
     }
 }

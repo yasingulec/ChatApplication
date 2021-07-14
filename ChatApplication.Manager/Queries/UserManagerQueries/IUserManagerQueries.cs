@@ -12,5 +12,6 @@ namespace ChatApplication.Manager.Queries.UserManagerQueries
         Task<List<User>> GetUsersAsync();
         Task<User> GetUserAsync(Guid guid);
         Task<User> GetUserAsync(string username, string password);
+        string GetToken(User user);
     }
 }
