@@ -2,6 +2,7 @@ using ChatApplication.API.FluentValidation;
 using ChatApplication.Data;
 using ChatApplication.Data.Commands.UserCommands;
 using ChatApplication.Data.Queries.UserQueries;
+using ChatApplication.Manager.Commands.UserCommands;
 using ChatApplication.Manager.Queries.UserManagerQueries;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -53,6 +54,8 @@ namespace ChatApplication.API
             services.AddTransient<IUserQueries, UserQueries>();
             services.AddTransient<IUserCommands, UserCommands>();
             services.AddTransient<IUserManagerQueries, UserManagerQueries>();
+            services.AddTransient<IUserManagerCommands, UserManagerCommands>();
+
             services.AddAutoMapper(typeof(Startup));
             services.AddSwaggerGen(c =>
             {

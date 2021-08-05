@@ -1,4 +1,5 @@
-﻿using ChatApplication.Entities;
+﻿using ChatApplication.API.Models;
+using ChatApplication.Entities;
 using FluentValidation;
 using System;
 using System.Collections.Generic;

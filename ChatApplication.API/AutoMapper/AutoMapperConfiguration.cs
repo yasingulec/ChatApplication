@@ -14,6 +14,7 @@ namespace ChatApplication.API.AutoMapper
         {
             CreateMap<User, UserAuthenticationResponseModel>();
             CreateMap<Role, RoleResponseModel>();
+            CreateMap<UserRegisterModel, User>();
         }
     }
 }
