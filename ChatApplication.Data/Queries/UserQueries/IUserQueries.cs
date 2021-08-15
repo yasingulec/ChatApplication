@@ -12,5 +12,6 @@ namespace ChatApplication.Data.Queries.UserQueries
         Task<List<User>> GetUsersAsync();
         Task<User> GetUserAsync(Guid guid);
         Task<User> GetUserAsync(string username, string password);
+        Task<User> GetUserByUsername(string username);
     }
 }

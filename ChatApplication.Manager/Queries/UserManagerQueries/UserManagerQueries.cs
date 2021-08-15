@@ -53,6 +53,12 @@ namespace ChatApplication.Manager.Queries.UserManagerQueries
             return user;
         }
 
+        public async Task<User> GetUserByUsername(string username)
+        {
+            var user = await _userQueries.GetUserByUsername(username);
+            return user;
+        }
+
         public async Task<List<User>> GetUsersAsync()
         {
             var users = await _userQueries.GetUsersAsync();

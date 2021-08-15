@@ -27,12 +27,12 @@ namespace ChatApplication.API.Controllers
             _userManagerQueries = userManagerQueries;
             _mapper = mapper;
         }
-
+     
         [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> Register(UserRegisterModel userModel)
         {
-            var user = await _userManagerQueries.GetUserAsync(userModel.Username, userModel.PasswordHash);
+            var user = await _userManagerQueries.GetUserByUsername(userModel.Username);
             if (user != null)
                 return BadRequest(new Response<string>
                 {
@@ -44,7 +44,7 @@ namespace ChatApplication.API.Controllers
             var mappedUser = _mapper.Map<User>(userModel);
             await _userManagerCommands.AddUserAsync(mappedUser);
 
-            return Ok();
+            return NoContent();
         }
     }
 }
