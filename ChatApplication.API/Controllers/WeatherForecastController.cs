@@ -2,6 +2,7 @@
 using ChatApplication.Data.Commands.UserCommands;
 using ChatApplication.Data.Queries.UserQueries;
 using ChatApplication.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -11,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace ChatApplication.API.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("[controller]/[action]")]
     public class WeatherForecastController : ControllerBase
