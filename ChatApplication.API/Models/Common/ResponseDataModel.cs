@@ -5,9 +5,8 @@ using System.Threading.Tasks;
 
 namespace ChatApplication.API.Models.Common
 {
-    public class Response
+    public class ResponseDataModel<T>:Response
     {
-        public string Message { get; set; }
-        public bool isSuccess { get; set; }
+        public T Data { get; set; }
     }
 }

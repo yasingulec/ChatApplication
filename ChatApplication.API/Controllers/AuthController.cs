@@ -27,15 +27,16 @@ namespace ChatApplication.API.Controllers
             var user = await _userManagerQueries.GetUserAsync(model.Username, model.Password);
 
             if (user == null)
-                return BadRequest(new { 
-                    message=$"{nameof(model.Username)} veya {nameof(model.Password)} hatalı."
+                return BadRequest(new
+                {
+                    message = $"{nameof(model.Username)} veya {nameof(model.Password)} hatalı."
                 });
 
             _mapper.Map<List<RoleResponseModel>>(user.Roles);
             var mappedUser = _mapper.Map<UserAuthenticationResponseModel>(user);
 
             mappedUser.Token = _userManagerQueries.GetToken(user);
-            Response<UserAuthenticationResponseModel> response = new Response<UserAuthenticationResponseModel>
+            ResponseDataModel<UserAuthenticationResponseModel> response = new ResponseDataModel<UserAuthenticationResponseModel>
             {
                 Data = mappedUser,
                 isSuccess = true,

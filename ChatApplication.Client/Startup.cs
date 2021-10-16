@@ -24,6 +24,7 @@ namespace ChatApplication.Client
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
+       
             services.AddSignalR();
         }
 

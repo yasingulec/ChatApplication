@@ -37,7 +37,7 @@ namespace ChatApplication.API
                 options.AddPolicy("MyAllowSpecificOrigins",
                     builder =>
                     {
-                        builder.WithOrigins("http://localhost:21730/");
+                        builder.WithOrigins("http://localhost:21730/").AllowAnyHeader().AllowCredentials().AllowAnyMethod();
                     });
             });
 

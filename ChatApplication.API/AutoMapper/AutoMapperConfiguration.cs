@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using ChatApplication.API.Models;
 using ChatApplication.Entities;
+using ChatApplication.Entities.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,7 @@ namespace ChatApplication.API.AutoMapper
             CreateMap<User, UserAuthenticationResponseModel>();
             CreateMap<Role, RoleResponseModel>();
             CreateMap<UserRegisterModel, User>();
+            CreateMap<ChangePasswordModel, ChangePasswordDTO>();
         }
     }
 }

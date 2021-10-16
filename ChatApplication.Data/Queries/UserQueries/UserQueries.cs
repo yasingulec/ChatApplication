@@ -62,7 +62,7 @@ namespace ChatApplication.Data.Queries.UserQueries
 
         public async Task<List<Role>> GetUserRolesAsync(Guid userId)
         {
-            string sp = "user_GET_USER_ROLES";
+            string sp = "GET_USER_ROLES";
             using (var con = Connection)
             {
                 DynamicParameters parameters = new DynamicParameters();
@@ -74,7 +74,7 @@ namespace ChatApplication.Data.Queries.UserQueries
 
         public async Task<User> GetUserByUsername(string username)
         {
-            string sp = "user_GET_USER_BY_NAME";
+            string sp = "GET_USER_BY_NAME";
             using (var con = Connection)
             {
                 DynamicParameters parameters = new DynamicParameters();

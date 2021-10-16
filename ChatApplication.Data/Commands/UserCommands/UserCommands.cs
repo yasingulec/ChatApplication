@@ -1,4 +1,5 @@
 ﻿using ChatApplication.Entities;
+using ChatApplication.Entities.DTO;
 using Dapper;
 using Microsoft.Extensions.Options;
 using System;
@@ -61,6 +62,20 @@ namespace ChatApplication.Data.Commands.UserCommands
 
                 var affectedRows = await con.ExecuteAsync(sp, parameters, commandType: CommandType.StoredProcedure);
             }
+        }
+
+        public async Task<int> ChangePasswordAsync(ChangePasswordDTO user)
+        {
+            string sp = "ACCOUNT_ChangePassword";
+            using (var con = Connection)
+            {
+                DynamicParameters parameters = new DynamicParameters();
+                parameters.Add("@Username", user.userName, DbType.String);
+                parameters.Add("@OldPassword", user.oldPassword, DbType.String);
+                parameters.Add("@NewPassword", user.newPassword, DbType.String);
+                var affectedRows = await con.ExecuteAsync(sp, parameters, commandType: CommandType.StoredProcedure);
+                return affectedRows;
+            }     
         }
     }
 }
